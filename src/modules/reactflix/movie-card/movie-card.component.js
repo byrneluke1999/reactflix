@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardTitle, CardMedia } from "material-ui";
+import movieBrowserReducer from "../reactflix.reducers";
 
 const styles = {
   cardTitle: {
@@ -29,12 +30,30 @@ class MovieCardComponent extends React.Component {
     };
   }
   render() {
+    const { movie, openMovieModal } = this.props;
+    // The subtitle won't render if it's null
+    const subtitle = this.state.isMouseOver ? movie.overview : null;
+
     return (
       <Card
         style={styles.card}
         onMouseOver={() => this.setState({ isMouseOver: true })}
         onMouseLeave={() => this.setState({ isMouseOver: false })}
-      ></Card>
+      >
+        <CardMedia
+          style={styles.cardMedia}
+          overlay={
+            <CardTitle
+              title={movie.title}
+              subtitle={movie.subtitle}
+            ></CardTitle>
+          }
+        >
+          <img style={styles.bgImage} src={movie.poster_path} />
+        </CardMedia>
+      </Card>
     );
   }
 }
+
+export default MovieCardComponent;

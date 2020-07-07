@@ -12,7 +12,7 @@ const createMovieDbUrl = (relativeUrl, queryParams) => {
 };
 
 export const getTopMovies = async ({ page }) => {
-  const fullURL = createMovieDbUrl("/movie/top-rated", {
+  const fullURL = createMovieDbUrl("/movie/top_rated", {
     page,
   });
   return fetch(fullURL);

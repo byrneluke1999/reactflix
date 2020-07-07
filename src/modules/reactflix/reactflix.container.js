@@ -6,11 +6,37 @@ import * as movieActions from "./reactflix.actions";
 import * as movieHelpers from "./reactflix.helpers";
 import MovieList from "./movie-list/movie-list.component";
 
+import * as scrollHelpers from "../common/scroll.helpers";
+
 import { connect } from "react-redux";
 
 class MovieBrowser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPage: 1,
+    };
+    this.handleScroll = this.handleScroll.bind(this);
+  }
   componentDidMount() {
+    window.onscroll = this.handleScroll;
     this.props.getTopMovies(1);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    const { topMovies } = this.props;
+    if (!topMovies.isLoading) {
+      let percentageScrolled = scrollHelpers.getScrollDownPercentage(window);
+      if (percentageScrolled > 0.8) {
+        const nextPage = this.state.currentPage + 1;
+        this.props.getTopMovies(nextPage);
+        this.setState({ currentPage: nextPage });
+      }
+    }
   }
   render() {
     const { topMovies } = this.props;

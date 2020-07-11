@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardTitle, CardMedia } from "material-ui";
-import movieBrowserReducer from "../reactflix.reducers";
+import { openMovieModal } from "../movie-modal/movie-modal.actions";
+import { connect } from "react-redux";
 
 const styles = {
   cardTitle: {
@@ -49,11 +50,11 @@ class MovieCardComponent extends React.Component {
             ></CardTitle>
           }
         >
-          <img style={styles.bgImage} src={movie.poster_path} />
+          <img style={styles.bgImage} src={movie.poster_path} alt="" />
         </CardMedia>
       </Card>
     );
   }
 }
 
-export default MovieCardComponent;
+export default connect(() => ({}), { openMovieModal })(MovieCardComponent);

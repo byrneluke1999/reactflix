@@ -1,20 +1,19 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import { Container, Row } from "react-bootstrap";
 import { AppBar } from "material-ui";
-
 import * as movieActions from "./reactflix.actions";
 import * as movieHelpers from "./reactflix.helpers";
 import MovieList from "./movie-list/movie-list.component";
-
 import * as scrollHelpers from "../common/scroll.helpers";
-
-import { connect } from "react-redux";
+import MovieModal from "./movie-modal/movie-modal.container";
 
 class MovieBrowser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentPage: 1,
+      currentMovies: [],
     };
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -52,6 +51,8 @@ class MovieBrowser extends React.Component {
             <MovieList movies={movies} isLoading={topMovies.isLoading} />
           </Row>
         </Container>
+        {/* Something is wrong with the details of a movie - clicking indiv movie doesn't render the movie card component. Work on it */}
+        <MovieModal />
       </div>
     );
   }

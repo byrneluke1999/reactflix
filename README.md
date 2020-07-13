@@ -1,3 +1,11 @@
+I built a 'knock off' version of Netflix using the TMDb [API](https://developers.themoviedb.org/3). 
+Some features include scrolling infinitley to view a list of movies and a click to show more information for movies.
+(The option to play movies does not exist.)
+
+This project gave me the chance to learn a little about redux and how it is used in web apps. Whilst it wasn't necessary to include
+Redux in this project, it was interesting to learn about it. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
